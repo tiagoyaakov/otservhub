@@ -6,8 +6,8 @@ import { cn } from "@/lib/utils";
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: "OtservHub",
-  description: "OtservHub Project",
+  title: "OtservHub - Descubra os Melhores Servidores de Open Tibia",
+  description: "O maior diretório de servidores Open Tibia. Encontre os melhores servidores, compare características e se prepare para começar bem sua aventura.",
 };
 
 export default function RootLayout({

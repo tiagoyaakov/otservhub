@@ -1,0 +1,391 @@
+Product Requirements Document (PRD) - OtservHub (MVP)
+
+Propriedade
+
+Detalhes
+
+Produto
+
+OtservHub
+
+Versão
+
+1.2 (MVP + Ads Dashboard + New Theme)
+
+Status
+
+Rascunho Final
+
+Objetivo
+
+Criar a plataforma definitiva de descoberta de servidores Open Tibia, focada em transparência, UX moderna e sistema de Hype.
+
+1. Visão do Produto e Escopo
+
+O OtservHub é uma plataforma moderna para listagem e descoberta de servidores de Open Tibia (OTServer). Diferente dos concorrentes arcaicos, o OtservHub foca na experiência do usuário (UX), na veracidade dos dados (combate a spoofing) e no engajamento social ("Hype").
+
+1.1 Objetivos do MVP
+
+Listagem Inteligente: Permitir que jogadores encontrem servidores baseados na data de lançamento (foco em "New Servers").
+
+Sistema de Hype: Substituir o sistema de "votos" tradicional por intenção de jogar real (Aguardando, Vou Jogar, etc.).
+
+Monetização Self-Service: Dashboard onde donos de servidores podem comprar e gerenciar espaços de destaque de forma autônoma e transparente.
+
+Segurança e Confiança: Login social e validação de propriedade de servidor para evitar fraudes.
+
+1.2 Fora do Escopo (Post-MVP)
+
+Sistema de leilão automático (Bidding) onde o preço flutua baseado na demanda. No MVP, o preço é fixo/tabelado.
+
+Sistema de Guildas e Recrutamento de Times (War of Guilds será apenas visual ou informativo simples no MVP).
+
+Webhooks automáticos para Discord.
+
+Dashboard analítico avançado (Analytics de cliques/impressões profundos) - Substituído por educação do usuário sobre UTMs no MVP.
+
+2. Personas de Usuário
+
+Persona
+
+Descrição
+
+Necessidades Principais
+
+O Jogador (Player)
+
+Usuário casual ou hardcore procurando um novo servidor para jogar.
+
+Busca rápida, filtros precisos (versão, mapa), saber onde a comunidade vai jogar (Hype), mobile-friendly.
+
+O Admin (Dono)
+
+Dono de servidor que quer divulgar seu projeto.
+
+Cadastrar servidor, provar posse, visualizar disponibilidade de banners e comprar espaços publicitários.
+
+O Gestor (Plataforma)
+
+Administrador do OtservHub.
+
+Moderar servidores, definir preços dos slots de publicidade, banir fraudes.
+
+3. Funcionalidades Principais (Functional Requirements)
+
+3.1 Módulo: Home e Descoberta (Público)
+
+A vitrine principal do site, acessível sem login.
+
+FR-01: Listagem Principal (Countdown): A lista padrão deve ordenar os servidores por "Próximos Lançamentos" (Launch Date ASC) e servidores recém-lançados. Deve exibir um contador regressivo (ex: "Faltam 2d 05h").
+
+FR-02: Filtros Rápidos: Barra lateral ou superior permitindo filtrar por:
+
+Versão: (7.4, 8.60, 10.x, 12+, Custom).
+
+Tipo de Mundo: (PvP, No-PvP, PvP-Enforced).
+
+Mapa: (Global, Baiak, Custom).
+
+FR-03: Busca Textual: Campo de busca para encontrar servidor pelo nome.
+
+FR-04: Cards de Servidor: Cada item da lista deve mostrar: Logo, Servidor (nome), Lança Em (contagem regressiva com data do lançamento abaixo), Versão, Rate, Estilo, Sistemas (com ícone que abre modal simples ao passar mouse em cima mostrando os principais sistemas do ot), Mobile (ícone de “check” ou “X”), Links Úteis.
+
+FR-05: Vitrine de Sponsors (Steam-like):
+
+Hero Banner: Destaque rotativo grande no topo (Slot Premium).
+
+Spotlight: Cards destacados com bordas ou cores diferenciadas (Gold/Silver).
+
+Nota: Estes espaços são alimentados automaticamente com base nas compras feitas no Dashboard de Patrocinados.
+
+3.2 Módulo: Detalhes do Servidor e Hype
+
+Página individual de cada servidor.
+
+FR-06: Página de Detalhes: Exibir descrição completa, IP, porta, site oficial, screenshots (galeria simples) e vídeo (embed YouTube).
+
+Botão de Reportar: Visível discretamente. Abre modal para denúncia (Scam, Conteúdo Impróprio).
+
+Download: Apenas links externos (Mediafire, Mega, Site Oficial). Hospedagem de binários (.exe) estritamente proibida no OtservHub.
+
+FR-07: Botões de Hype (Gamefication & Escassez):
+
+Usuários logados têm "Slots de Atenção" limitados para garantir a veracidade do Hype.
+
+Opções e Limites:
+
+🔥 Vou Jogar (GOING): Peso 3. Máximo 3 servidores ativos por vez. (Força escolha real).
+
+👀 Aguardando (WAITING): Peso 2. Máximo 5 servidores ativos.
+
+🤔 Talvez (MAYBE): Peso 1. Ilimitado (Funciona como favoritos/wishlist).
+
+Validação: O banco de dados (Trigger) impede inserção acima do limite, obrigando o usuário a remover um antigo para adicionar um novo.
+
+FR-08: Visualização de Hype (Decaimento Temporal):
+
+Hype Score = Soma dos pontos das interações realizadas EXCLUSIVAMENTE nos últimos 30 dias.
+
+Decaimento: Votos com mais de 30 dias deixam de contar para o score automaticamente. Isso previne que servidores antigos dominem o ranking e obriga renovação da comunidade.
+
+3.3 Módulo: Autenticação e Perfil
+
+FR-09: Social Login: Login obrigatório via Google ou Discord para interagir (Hype) ou cadastrar servidor.
+
+Justificativa: Reduz bots e facilita o cadastro.
+
+FR-10: Perfil do Usuário: Página simples mostrando "Servidores que estou acompanhando".
+
+3.4 Módulo: Cadastro e Gestão de Servidores (Donos)
+
+FR-11: Cadastro de Servidor: Formulário pedindo: Nome, IP, Porta, Versão, Site, Data de Lançamento, Banner (Upload), Descrição.
+
+FR-12: Validação de Propriedade (Anti-Fraud):
+
+Método Único (MVP): Meta-tag HTTP. Não haverá verificação via MOTD/TCP nesta versão.
+
+Fluxo:
+
+O sistema gera um Token Único (ex: otservhub-verify-a1b2).
+
+O usuário adiciona a meta-tag no site: `<meta name="otservhub-verification" content="TOKEN" />`.
+
+O usuário clica em "Verificar Agora". O backend faz um GET na URL cadastrada e valida o token.
+
+Regra de Anti-Spam (3 Strikes):
+
+Tentativas 1-3: Permitidas com delay mínimo (10s).
+
+Falha na 3ª: Cooldown de 15 minutos.
+
+Falha na 4ª: Cooldown de 1 hora.
+
+Disputas: Casos de roubo de propriedade/disputa de IP serão resolvidos manualmente via Suporte (Admin), baseando-se na posse técnica do domínio/servidor.
+
+A página de cadastro deve mostrar este tutorial.
+
+FR-13: Edição e Mutabilidade:
+
+O dono pode editar informações básicas.
+
+Regra Crítica: Se o IP ou Website forem alterados, o selo `is_verified` é revogado AUTOMATICAMENTE (via Database Trigger).
+
+UX: Exibir aviso "⚠️ Alterar IP/Site removerá a verificação temporariamente" no formulário.
+
+FR-18: Aceite Legal:
+
+O formulário de cadastro obriga o aceite dos "Termos de Uso e Política de Privacidade". O timestamp do aceite é gravado no banco de dados (`tos_accepted_at`) para segurança jurídica.
+
+3.5 Módulo: Dashboard de Patrocinados (Novo)
+
+Funcionalidade exclusiva para usuários autenticados donos de servidores verificados.
+
+FR-14: Mapa de Slots (Inventory View):
+
+O usuário visualiza uma grade ou lista com todos os espaços publicitários disponíveis no site (Ex: "Hero Banner - Posição 1", "Sidebar - Topo", "Spotlight - Categoria Baiak").
+
+Visualização de Status:
+
+🟢 Disponível: Pode ser comprado imediatamente.
+
+🔴 Ocupado: Mostra qual servidor está ocupando e um contador regressivo ("Libera em: 2d 14h 30m").
+
+FR-15: Detalhes do Slot: Ao clicar em um espaço, exibir:
+
+Nome do Slot: (ex: Hero Banner Home).
+
+Dimensões da Imagem: (ex: 1920x400px).
+
+Preço: Valor tabelado (ex: R$ 100,00).
+
+Período de Exibição: (ex: "Válido por 7 dias").
+
+FR-16: Fluxo de Compra/Reserva:
+
+Regra de Ouro: First-Come-First-Serve. Não há reserva nem prioridade de renovação. O slot expira rigidamente no fim do contrato.
+
+Se Disponível: O usuário seleciona o servidor dele, faz o upload do banner (se necessário para aquele slot) e procede para o pagamento.
+
+Gateway: Integração com Stripe.
+
+Atomicidade: Permitir compra de múltiplos períodos (ex: até 4 semanas consecutivas) em uma única transação. Não permitir compras com mais de 6 meses de antecedência (Escassez).
+
+Se Ocupado: Botão "Avise-me quando liberar" (Notify Wait). O sistema dispara e-mail para todos os interessados na hora exata da liberação (00:00). A compra é disputada por quem chegar primeiro (Gamification/Escassez).
+
+ FR-17: Meus Anúncios: Lista mostrando os patrocínios ativos do usuário e o tempo restante de cada um.
+
+Dica Pro (Educação do Cliente): No upload do banner, exibir mensagem: "Quer saber quantos players vieram pelo nosso banner? Use um link rastreável (UTM) ou um encurtador (bit.ly) no campo 'Link de Destino'." (Substitui Dashboard de Analytics no MVP).
+
+4. Requisitos Não-Funcionais (NFR)
+
+NFR-01: Performance: O carregamento da Home deve ocorrer em menos de 1.5s (LCP). Uso de SSG (Static Site Generation) ou ISR para a lista principal é recomendado.
+
+NFR-02: Responsividade: Interface 100% adaptada para Mobile (onde 60%+ do tráfego ocorre).
+
+NFR-03: SEO: Estrutura de URLs amigáveis (otservhub.com/server/baiak-wars) e meta-tags dinâmicas para compartilhamento no Discord/WhatsApp.
+
+NFR-04: Segurança: Proteção contra SQL Injection e XSS. Rate limit na API de "Hype".
+
+Anti-Bot: O Login Social (Google/Discord) será a única barreira de entrada para o MVP. Captcha (Turnstile) descartado neste momento para reduzir atrito.
+
+5. Arquitetura Técnica Sugerida
+
+Baseado na pesquisa de inteligência para evitar os erros do concorrente (PHP legado/jQuery):
+
+Frontend: React.js com framework Next.js (App Router).
+
+Estilização: Tailwind CSS (para rapidez e consistência com o design system proposto).
+
+Ícones: Lucide-React ou FontAwesome.
+
+Backend:
+
+Opção A (Serverless - Recomendada): Next.js API Routes + Supabase (PostgreSQL + Auth + Storage para imagens).
+
+Banco de Dados: PostgreSQL.
+
+Tabelas principais: users, servers, hypes, sponsors.
+
+Hospedagem: Vercel (Frontend/API) + Supabase (DB/Storage).
+
+Worker: GitHub Actions (Cron Job) para executar o Pinger (Script TCP) e atualizar status dos servidores. Evita estouro de tempo da Vercel.
+
+Imagens: Obrigatório upload para Supabase Storage (Logos/Banners). Hotlinking proibido. Compressão client-side antes do upload.
+
+6. Modelo de Dados Sugerido (Simplificado)
+
+Tabela: Servers
+
+id (UUID)
+
+owner_id (FK User)
+
+name (String)
+
+ip_address (String)
+
+port (Int)
+
+launch_date (Timestamp)
+
+version (FK public.game_versions) - Seleção obrigatória de tabela de domínio.
+
+slug (String Unique) - Gerado automaticamente com sufixo inteligente em caso de colisão (ex: baiak-wars-2). Usuário pode editar antes de salvar.
+
+is_verified (Boolean) - Diferencial principal contra cópias.
+
+hype_score (Int)
+
+Tabela: AdSlots (Novo - Configuração dos Espaços)
+
+id (Int)
+
+name (String) - ex: "Hero Banner Home"
+
+position_code (String) - ex: "HOME_HERO_1"
+
+price (Decimal)
+
+duration_days (Int) - ex: 7
+
+Tabela: Sponsorships (Novo - Compras)
+
+id (UUID)
+
+server_id (FK Server)
+
+slot_id (FK AdSlot)
+
+start_date (Timestamp)
+
+end_date (Timestamp)
+
+status (Enum: ACTIVE, SCHEDULED, EXPIRED)
+
+payment_status (Enum: PENDING, PAID)
+
+Tabela: Hypes
+
+id (UUID)
+
+user_id (FK User)
+
+server_id (FK Server)
+
+type (Enum: WAITING, GOING, MAYBE)
+
+created_at (Timestamp)
+
+7. Design e UI (Nova Identidade Visual)
+
+Conceito: "Branco Futurista & Minimalista". Uma ruptura completa com os designs "dark/trevosos" tradicionais de sites de Tibia. O foco é clareza, tecnologia e leveza.
+
+Paleta de Cores:
+
+Fundo: Branco Gelo (#FAFAFA ou #F4F6F8) e Cinza Platina para áreas de contraste sutil. Evitar preto chapado.
+
+Acentos (Highlights): Cores neon vibrantes para elementos de ação, mas usadas com muita parcimônia (apenas botões CTA, badges ou bordas de destaque). Exemplos:
+
+Cyber Blue: #007AFF ou Ciano Elétrico (Ações principais).
+
+Neon Purple: Para elementos "Premium/Sponsor".
+
+Tipografia: Sans-serif moderna, limpa e com bom espaçamento (Ex: Inter, Roboto ou Geist Sans). Títulos em peso Bold, corpo em Regular.
+
+Estilo dos Elementos (UI):
+
+Card Design: Elementos em cartões brancos puros (#FFFFFF) sobre o fundo gelo, com sombras extremamente suaves e difusas (Drop Shadows estilo "Glassmorphism" leve ou Apple-like).
+
+Bordas: Arredondadas (Rounded-lg ou xl) para transmitir modernidade.
+
+Layout da Listagem:
+
+Limpo, com muito respiro (whitespace).
+
+Colunas: Logo | Nome/IP (Tipografia forte) | Versão (Badge sutil) | Contagem Regressiva (Destaque tipográfico) | Botão "Ver Detalhes" (Minimalista/Outline ou Ghost).
+
+Sponsors (Vitrine):
+
+Devem se integrar harmonicamente ao fundo branco.
+
+Tags de categorias (Os mais Oldschools, Baiaks do momento) usando badges com cores pastéis ou contornos finos (Outlined Badges).
+
+Destaques "Recomendado" podem ter um leve brilho (glow) da cor de acento atrás do card, sem poluir visualmente.
+
+8. Definição de MVP vs Futuro
+
+Feature
+
+MVP (Agora)
+
+Futuro (v2.0)
+
+Login
+
+Google / Discord
+
+Email/Senha nativo
+
+Verificação
+
+Token no MOTD/Site
+
+Validação via DNS ou Arquivo TXT
+
+Sponsors
+
+Dashboard Self-Service (Compra de Slots Fixos)
+
+Sistema de Leilão Automático (Bidding)
+
+Hype
+
+Contagem simples
+
+Gráfico de tendência de Hype
+
+Integração
+
+Nenhuma
+
+Webhooks para Discord do servidor
