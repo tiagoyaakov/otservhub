@@ -25,11 +25,22 @@ src/
 │   ├── page.tsx           # Homepage
 │   ├── layout.tsx         # Root layout
 │   ├── globals.css        # Global styles
+│   ├── entrar/
+│   │   └── page.tsx       # Login page
+│   ├── perfil/
+│   │   └── page.tsx       # User profile page
 │   ├── cadastrar-servidor/
 │   │   └── page.tsx       # Server registration page
+│   ├── auth/
+│   │   ├── callback/
+│   │   │   └── route.ts   # OAuth callback handler
+│   │   └── error/
+│   │       └── page.tsx   # Auth error page
 │   └── api/
 │       └── verify-server/
 │           └── route.ts   # API for meta-tag verification
+├── hooks/
+│   └── useAuth.ts         # Auth state hook
 ├── components/
 │   ├── layout/            # Layout components (Header, Footer)
 │   ├── home/              # Homepage-specific components
@@ -63,6 +74,15 @@ src/
 - **Cards**: Sombras suaves, bordas arredondadas
 
 ## Recent Changes
+- **2026-01-13**: Sistema de Autenticação implementado
+  - Login social via Google e Discord (Supabase Auth)
+  - Middleware para gerenciamento de sessões
+  - Página de login (/entrar) com botões sociais
+  - Página de perfil (/perfil) com informações do usuário
+  - Hook useAuth para gerenciar estado de autenticação
+  - Header atualizado com menu de usuário logado
+  - Server actions para signIn e signOut
+
 - **2026-01-13**: Página de Cadastro de Servidor implementada
   - Formulário completo em 3 passos (Informações, Banner, Verificação)
   - Campos: Nome, IP, Porta, Versão, Website, Data/Hora de Lançamento
