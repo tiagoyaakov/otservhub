@@ -36,9 +36,12 @@ export function Header() {
             <button className="px-4 py-2 text-sm text-gray-300 hover:text-white border border-gray-600 rounded-lg transition-colors">
               Entrar
             </button>
-            <button className="px-4 py-2 text-sm text-white bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors font-medium">
+            <Link 
+              href="/cadastrar-servidor"
+              className="px-4 py-2 text-sm text-white bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors font-medium"
+            >
               Cadastrar Servidor
-            </button>
+            </Link>
           </div>
 
           <button
@@ -65,9 +68,12 @@ export function Header() {
                 <button className="px-4 py-2 text-sm text-gray-300 hover:text-white border border-gray-600 rounded-lg transition-colors">
                   Entrar
                 </button>
-                <button className="px-4 py-2 text-sm text-white bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors font-medium">
+                <Link 
+                  href="/cadastrar-servidor"
+                  className="px-4 py-2 text-sm text-white bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors font-medium text-center"
+                >
                   Cadastrar Servidor
-                </button>
+                </Link>
               </div>
             </nav>
           </div>
