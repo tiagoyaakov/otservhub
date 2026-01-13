@@ -24,7 +24,12 @@ src/
 ├── app/                    # Next.js App Router pages
 │   ├── page.tsx           # Homepage
 │   ├── layout.tsx         # Root layout
-│   └── globals.css        # Global styles
+│   ├── globals.css        # Global styles
+│   ├── cadastrar-servidor/
+│   │   └── page.tsx       # Server registration page
+│   └── api/
+│       └── verify-server/
+│           └── route.ts   # API for meta-tag verification
 ├── components/
 │   ├── layout/            # Layout components (Header, Footer)
 │   ├── home/              # Homepage-specific components
@@ -58,6 +63,16 @@ src/
 - **Cards**: Sombras suaves, bordas arredondadas
 
 ## Recent Changes
+- **2026-01-13**: Página de Cadastro de Servidor implementada
+  - Formulário completo em 3 passos (Informações, Banner, Verificação)
+  - Campos: Nome, IP, Porta, Versão, Website, Data/Hora de Lançamento
+  - Seleção de Sistemas do servidor (Quest, Task, Cast, Auto Loot, etc)
+  - Upload de banner com preview
+  - Sistema de verificação de propriedade via meta-tag
+  - API /api/verify-server com proteção contra SSRF
+  - Aceite obrigatório de Termos de Uso
+  - Aviso sobre revogação de verificação ao alterar IP/Website
+
 - **2026-01-11**: Homepage completa implementada
   - Header com navegação e botões de autenticação
   - Hero Banner com carousel automático (5s)
