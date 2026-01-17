@@ -58,7 +58,7 @@ export function Sidebar({ servers }: SidebarProps) {
   ];
 
   return (
-    <aside className="w-full lg:w-56 flex-shrink-0">
+    <aside className="w-full">
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
         {categories.map((category) => (
           <div key={category.id} className="border-b border-gray-100 last:border-b-0">

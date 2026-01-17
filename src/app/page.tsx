@@ -64,7 +64,7 @@ export default function Home() {
       <Header />
       
       <main className="flex-1">
-        <div className="container mx-auto px-4 py-6">
+        <div className="w-full px-4 py-6">
           <section className="mb-6">
             <HeroBanner />
           </section>
@@ -73,8 +73,10 @@ export default function Home() {
             <SearchFilters filters={filters} onFilterChange={setFilters} />
           </section>
 
-          <section className="flex gap-6">
-            <Sidebar servers={mockServers} />
+          <section className="flex gap-3">
+            <div className="w-[180px] flex-shrink-0 hidden lg:block">
+              <Sidebar servers={mockServers} />
+            </div>
             
             <div className="flex-1 min-w-0">
               <ServerTable 
@@ -86,7 +88,9 @@ export default function Home() {
               />
             </div>
             
-            <AdBanner />
+            <div className="w-[160px] flex-shrink-0 hidden xl:block">
+              <AdBanner />
+            </div>
           </section>
         </div>
       </main>

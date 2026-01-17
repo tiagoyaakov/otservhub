@@ -7,6 +7,7 @@ export interface Server {
   id: string;
   name: string;
   logo: string;
+  country: "BR" | "US" | "EU";
   playersOnline: number;
   launchDate: string;
   version: string;
@@ -30,6 +31,7 @@ export const mockServers: Server[] = [
     id: "1",
     name: "Royal Tibia",
     logo: "/globe.svg",
+    country: "BR",
     playersOnline: 680,
     launchDate: "2026-01-12T18:00:00Z",
     version: "7.72",
@@ -51,6 +53,7 @@ export const mockServers: Server[] = [
     id: "2",
     name: "Dragon's Legacy",
     logo: "/globe.svg",
+    country: "US",
     playersOnline: 850,
     launchDate: "2026-01-13T20:00:00Z",
     version: "12.00",
@@ -72,6 +75,7 @@ export const mockServers: Server[] = [
     id: "3",
     name: "Baiak Wars",
     logo: "/globe.svg",
+    country: "BR",
     playersOnline: 520,
     launchDate: "2026-01-16T19:00:00Z",
     version: "8.60",
@@ -92,6 +96,7 @@ export const mockServers: Server[] = [
     id: "4",
     name: "Phoenix OT",
     logo: "/globe.svg",
+    country: "BR",
     playersOnline: 390,
     launchDate: "2026-01-14T17:00:00Z",
     version: "8.60",
@@ -112,6 +117,7 @@ export const mockServers: Server[] = [
     id: "5",
     name: "Storm OT",
     logo: "/globe.svg",
+    country: "US",
     playersOnline: 410,
     launchDate: "2026-01-15T21:00:00Z",
     version: "8.60",
@@ -132,6 +138,7 @@ export const mockServers: Server[] = [
     id: "6",
     name: "Mystic Realms",
     logo: "/globe.svg",
+    country: "EU",
     playersOnline: 445,
     launchDate: "2026-01-18T18:00:00Z",
     version: "12.85",
@@ -153,6 +160,7 @@ export const mockServers: Server[] = [
     id: "7",
     name: "Baiak Master",
     logo: "/globe.svg",
+    country: "BR",
     playersOnline: 380,
     launchDate: "2026-01-19T20:00:00Z",
     version: "8.60",
@@ -174,6 +182,7 @@ export const mockServers: Server[] = [
     id: "8",
     name: "Tibia Classic BR",
     logo: "/globe.svg",
+    country: "BR",
     playersOnline: 520,
     launchDate: "2026-01-21T19:00:00Z",
     version: "7.40",
@@ -194,6 +203,7 @@ export const mockServers: Server[] = [
     id: "9",
     name: "Battle Realms",
     logo: "/globe.svg",
+    country: "US",
     playersOnline: 420,
     launchDate: "2026-01-31T18:00:00Z",
     version: "12.00",
@@ -214,6 +224,7 @@ export const mockServers: Server[] = [
     id: "10",
     name: "Eternal Tibia",
     logo: "/globe.svg",
+    country: "EU",
     playersOnline: 280,
     launchDate: "2026-02-03T20:00:00Z",
     version: "12.00",
@@ -234,6 +245,7 @@ export const mockServers: Server[] = [
     id: "11",
     name: "War Lords",
     logo: "/globe.svg",
+    country: "BR",
     playersOnline: 650,
     launchDate: "2026-01-25T19:00:00Z",
     version: "8.60",

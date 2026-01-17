@@ -74,6 +74,15 @@ src/
 - **Cards**: Sombras suaves, bordas arredondadas
 
 ## Recent Changes
+- **2026-01-17**: Ajustes visuais na homepage
+  - Layout expandido para ocupar quase 100% da largura
+  - Tabela com abas: "Próximos Lançamentos" e "Servidores Online"
+  - Coluna Servidor: bandeira do país antes do nome (emojis)
+  - Modal estiloso para exibir sistemas do servidor
+  - Ícones Mobile maiores e centralizados
+  - Coluna Hype e Links centralizadas
+  - Todas as colunas visíveis e alinhadas
+
 - **2026-01-17**: Sistema de Hype implementado
   - Tabela user_hypes no banco de dados
   - Server actions para toggle/get hypes com limites
