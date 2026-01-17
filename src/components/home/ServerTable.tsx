@@ -14,6 +14,8 @@ import {
   X
 } from "lucide-react";
 import { Server, parseServerDate } from "@/data/mockServers";
+import { HypeButton } from "./HypeButton";
+import type { HypeType, HypeCounts } from "@/types/database.types";
 
 function formatCountdown(dateString: string): { countdown: string; dateStr: string } {
   const date = parseServerDate(dateString);
@@ -68,9 +70,13 @@ function SystemsModal({ server, onClose }: SystemsModalProps) {
 interface ServerRowProps {
   server: Server;
   index: number;
+  userHype: HypeType | null;
+  hypeCounts: HypeCounts;
+  isAuthenticated: boolean;
+  userHypeCounts: Record<HypeType, number>;
 }
 
-function ServerRow({ server, index }: ServerRowProps) {
+function ServerRow({ server, index, userHype, hypeCounts, isAuthenticated, userHypeCounts }: ServerRowProps) {
   const [showSystems, setShowSystems] = useState(false);
   const { countdown, dateStr } = formatCountdown(server.launchDate);
   const countryCode = index % 2 === 0 ? "BR" : "US";
@@ -140,6 +146,16 @@ function ServerRow({ server, index }: ServerRowProps) {
         </td>
 
         <td className="py-4 px-4">
+          <HypeButton
+            serverId={server.id}
+            userHype={userHype}
+            counts={hypeCounts}
+            isAuthenticated={isAuthenticated}
+            userHypeCounts={userHypeCounts}
+          />
+        </td>
+
+        <td className="py-4 px-4">
           <div className="flex items-center gap-2">
             <button className="p-1.5 text-gray-400 hover:text-gray-600 transition-colors">
               <MessageSquare size={16} />
@@ -163,9 +179,13 @@ function ServerRow({ server, index }: ServerRowProps) {
 
 interface ServerTableProps {
   servers: Server[];
+  userHypes: Record<string, HypeType>;
+  serverHypeCounts: Record<string, HypeCounts>;
+  isAuthenticated: boolean;
+  userHypeCounts: Record<HypeType, number>;
 }
 
-export function ServerTable({ servers }: ServerTableProps) {
+export function ServerTable({ servers, userHypes, serverHypeCounts, isAuthenticated, userHypeCounts }: ServerTableProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const serversPerPage = 10;
   
@@ -210,13 +230,24 @@ export function ServerTable({ servers }: ServerTableProps) {
                 Mobile
               </th>
               <th className="text-left py-3 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                Hype
+              </th>
+              <th className="text-left py-3 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
                 Links Úteis
               </th>
             </tr>
           </thead>
           <tbody>
             {displayedServers.map((server, index) => (
-              <ServerRow key={server.id} server={server} index={index} />
+              <ServerRow 
+                key={server.id} 
+                server={server} 
+                index={index}
+                userHype={userHypes[server.id] || null}
+                hypeCounts={serverHypeCounts[server.id] || { going: 0, waiting: 0, maybe: 0, total: 0 }}
+                isAuthenticated={isAuthenticated}
+                userHypeCounts={userHypeCounts}
+              />
             ))}
           </tbody>
         </table>

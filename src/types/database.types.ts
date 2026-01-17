@@ -7,9 +7,31 @@ export type Json =
     | { [key: string]: Json | undefined }
     | Json[]
 
+export type HypeType = 'GOING' | 'WAITING' | 'MAYBE';
+
+export interface UserHype {
+    id: string;
+    user_id: string;
+    server_id: string;
+    hype_type: HypeType;
+    created_at: string;
+}
+
+export interface HypeCounts {
+    going: number;
+    waiting: number;
+    maybe: number;
+    total: number;
+}
+
 export interface Database {
     public: {
         Tables: {
+            user_hypes: {
+                Row: UserHype;
+                Insert: Omit<UserHype, 'id' | 'created_at'>;
+                Update: Partial<Omit<UserHype, 'id'>>;
+            };
             servers: {
                 Row: {
                     id: string

@@ -9,6 +9,8 @@ import { Sidebar } from "@/components/home/Sidebar";
 import { ServerTable } from "@/components/home/ServerTable";
 import { AdBanner } from "@/components/home/AdBanner";
 import { mockServers, Server } from "@/data/mockServers";
+import { useHype } from "@/hooks/useHype";
+import { useAuth } from "@/hooks/useAuth";
 
 function filterServers(servers: Server[], filters: FilterState): Server[] {
   return servers.filter((server) => {
@@ -49,6 +51,10 @@ export default function Home() {
     map: "Todos",
   });
 
+  const { isAuthenticated } = useAuth();
+  const serverIds = useMemo(() => mockServers.map(s => s.id), []);
+  const { userHypes, serverHypeCounts, userHypeCounts } = useHype(serverIds);
+
   const filteredServers = useMemo(() => {
     return filterServers(mockServers, filters);
   }, [filters]);
@@ -71,7 +77,13 @@ export default function Home() {
             <Sidebar servers={mockServers} />
             
             <div className="flex-1 min-w-0">
-              <ServerTable servers={filteredServers} />
+              <ServerTable 
+                servers={filteredServers}
+                userHypes={userHypes}
+                serverHypeCounts={serverHypeCounts}
+                isAuthenticated={isAuthenticated}
+                userHypeCounts={userHypeCounts}
+              />
             </div>
             
             <AdBanner />

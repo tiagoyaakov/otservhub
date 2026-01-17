@@ -60,11 +60,11 @@ src/
 ```
 
 ### Key Features (MVP)
-1. **Listagem Principal (Countdown)**: Servidores ordenados por data de lançamento
-2. **Filtros Rápidos**: Versão, Tipo de PvP, Mapa
-3. **Sistema de Hype**: GOING (3 max), WAITING (5 max), MAYBE (ilimitado)
-4. **Hero Banner**: Carousel de servidores patrocinados
-5. **Dashboard de Sponsors**: Self-service para compra de slots
+1. **Listagem Principal (Countdown)**: Servidores ordenados por data de lançamento - Implementado
+2. **Filtros Rápidos**: Versão, Tipo de PvP, Mapa - Implementado
+3. **Sistema de Hype**: GOING (3 max), WAITING (5 max), MAYBE (ilimitado) - Implementado
+4. **Hero Banner**: Carousel de servidores patrocinados - Implementado
+5. **Dashboard de Sponsors**: Self-service para compra de slots - Pendente
 
 ### Design System
 - **Tema**: "Branco Futurista & Minimalista"
@@ -74,6 +74,14 @@ src/
 - **Cards**: Sombras suaves, bordas arredondadas
 
 ## Recent Changes
+- **2026-01-17**: Sistema de Hype implementado
+  - Tabela user_hypes no banco de dados
+  - Server actions para toggle/get hypes com limites
+  - Componente HypeButton com 3 tipos (GOING, WAITING, MAYBE)
+  - Hook useHype para carregar dados do cliente
+  - Integração na tabela de servidores
+  - Limites: GOING (3), WAITING (5), MAYBE (ilimitado)
+
 - **2026-01-13**: Sistema de Autenticação implementado
   - Login social via Google e Discord (Supabase Auth)
   - Middleware para gerenciamento de sessões
