@@ -27,20 +27,27 @@ export async function signInWithGoogle() {
   const supabase = await createClient();
   const headersList = await headers();
   const baseUrl = getBaseUrl(headersList);
+  const redirectTo = `${baseUrl}/auth/callback`;
+
+  console.log("[Auth] Google signIn - baseUrl:", baseUrl);
+  console.log("[Auth] Google signIn - redirectTo:", redirectTo);
 
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {
-      redirectTo: `${baseUrl}/auth/callback`,
+      redirectTo,
     },
   });
 
+  console.log("[Auth] Google signIn - data:", JSON.stringify(data, null, 2));
+
   if (error) {
-    console.error("Google sign in error:", error);
+    console.error("[Auth] Google sign in error:", error);
     redirect("/auth/error");
   }
 
   if (data.url) {
+    console.log("[Auth] Redirecting to:", data.url);
     redirect(data.url);
   }
 }
@@ -49,20 +56,27 @@ export async function signInWithDiscord() {
   const supabase = await createClient();
   const headersList = await headers();
   const baseUrl = getBaseUrl(headersList);
+  const redirectTo = `${baseUrl}/auth/callback`;
+
+  console.log("[Auth] Discord signIn - baseUrl:", baseUrl);
+  console.log("[Auth] Discord signIn - redirectTo:", redirectTo);
 
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "discord",
     options: {
-      redirectTo: `${baseUrl}/auth/callback`,
+      redirectTo,
     },
   });
 
+  console.log("[Auth] Discord signIn - data:", JSON.stringify(data, null, 2));
+
   if (error) {
-    console.error("Discord sign in error:", error);
+    console.error("[Auth] Discord sign in error:", error);
     redirect("/auth/error");
   }
 
   if (data.url) {
+    console.log("[Auth] Redirecting to:", data.url);
     redirect(data.url);
   }
 }
