@@ -270,21 +270,45 @@ export const sponsoredServers = [
     id: "sp1",
     name: "War of Guilds",
     tagline: "Batalhas épicas PvP",
+    description: "Prepare-se para a guerra de guildas mais intensa ja vista. Domine castelos, lute por territorios e mostre sua supremacia.",
     gradient: "from-purple-900 via-purple-800 to-indigo-900",
+    launchDate: "2026-02-01T18:00:00Z",
+    screenshots: [
+      "bg-purple-900",
+      "bg-purple-800",
+      "bg-indigo-900",
+      "bg-violet-900"
+    ],
     isSponsored: true,
   },
   {
-    id: "sp2", 
+    id: "sp2",
     name: "Tibia Legends",
     tagline: "A lenda retorna",
+    description: "Reviva os classicos momentos do Tibia com um toque moderno. Quests desafiadoras e um mapa vasto para explorar.",
     gradient: "from-blue-900 via-cyan-800 to-teal-900",
+    launchDate: "2026-02-10T19:00:00Z",
+    screenshots: [
+      "bg-blue-900",
+      "bg-cyan-800",
+      "bg-teal-900",
+      "bg-sky-900"
+    ],
     isSponsored: true,
   },
   {
     id: "sp3",
     name: "Dragon Realms",
     tagline: "Conquiste o mundo",
+    description: "Entre em um mundo dominado por dragoes ancestrais. Cace, colete tesouros e torne-se o guerreiro mais poderoso.",
     gradient: "from-red-900 via-orange-800 to-yellow-900",
+    launchDate: "Ja Disponivel",
+    screenshots: [
+      "bg-red-900",
+      "bg-orange-800",
+      "bg-yellow-900",
+      "bg-rose-900"
+    ],
     isSponsored: true,
   },
 ];
