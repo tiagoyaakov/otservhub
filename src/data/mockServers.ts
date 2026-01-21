@@ -20,6 +20,7 @@ export interface Server {
   hypeScore: number;
   category: "oldschool" | "baiak" | "war";
   systems: ServerSystem[];
+  description: string;
 }
 
 export function parseServerDate(dateString: string): Date {
@@ -48,6 +49,7 @@ export const mockServers: Server[] = [
       { name: "Task System", enabled: true },
       { name: "Cast System", enabled: true },
     ],
+    description: "O mais completo 7.72 do Brasil. Jogue agora!",
   },
   {
     id: "2",
@@ -70,6 +72,7 @@ export const mockServers: Server[] = [
       { name: "Prey System", enabled: true },
       { name: "Cast System", enabled: true },
     ],
+    description: "Servidor Global High Rate com sistemas exclusivos.",
   },
   {
     id: "3",
@@ -91,6 +94,7 @@ export const mockServers: Server[] = [
       { name: "Auto Loot", enabled: true },
       { name: "VIP System", enabled: true },
     ],
+    description: "O rei do PvP está de volta. Venha dominar!",
   },
   {
     id: "4",
@@ -112,6 +116,7 @@ export const mockServers: Server[] = [
       { name: "Auto Loot", enabled: true },
       { name: "Cast System", enabled: true },
     ],
+    description: "Baiak 24h sem lag. Dedicado BR.",
   },
   {
     id: "5",
@@ -133,6 +138,7 @@ export const mockServers: Server[] = [
       { name: "Quest System", enabled: true },
       { name: "Events", enabled: true },
     ],
+    description: "Mapa próprio, quests inéditas e RPG imersivo.",
   },
   {
     id: "6",
@@ -155,6 +161,7 @@ export const mockServers: Server[] = [
       { name: "Prey System", enabled: true },
       { name: "Task System", enabled: true },
     ],
+    description: "Aventure-se em terras desconhecidas. Sem PK.",
   },
   {
     id: "7",
@@ -177,6 +184,7 @@ export const mockServers: Server[] = [
       { name: "VIP System", enabled: true },
       { name: "Events", enabled: true },
     ],
+    description: "High XP, reset system e sets editados.",
   },
   {
     id: "8",
@@ -198,6 +206,7 @@ export const mockServers: Server[] = [
       { name: "Quest System", enabled: true },
       { name: "Cast System", enabled: true },
     ],
+    description: "Oldschool de verdade. Sem hotkeys.",
   },
   {
     id: "9",
@@ -219,6 +228,7 @@ export const mockServers: Server[] = [
       { name: "War System", enabled: true },
       { name: "Guild System", enabled: true },
     ],
+    description: "Focado em War. Crie seu time e lute.",
   },
   {
     id: "10",
@@ -240,6 +250,7 @@ export const mockServers: Server[] = [
       { name: "Imbuement", enabled: true },
       { name: "Prey System", enabled: true },
     ],
+    description: "Low rate, RPG sério e comunidade ativa.",
   },
   {
     id: "11",
@@ -262,6 +273,7 @@ export const mockServers: Server[] = [
       { name: "Guild System", enabled: true },
       { name: "Events", enabled: true },
     ],
+    description: "O melhor servidor de War do momento.",
   },
 ];
 

@@ -61,47 +61,56 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#f8f9fb]">
-      <Header />
+      <div className="flex-1 flex flex-col w-full bg-[url('/site-bg-clean.png')] bg-cover bg-fixed bg-center">
+        <Header />
 
-      <main className="flex-1">
-        <div className="w-full px-4 py-6">
-          <section className="mb-6">
-            <HeroBanner />
-          </section>
-
-          <section className="mb-6 w-[95%] md:w-[70%] mx-auto">
-            <SearchFilters filters={filters} onFilterChange={setFilters} />
-          </section>
-
-          {/* Main Content Area with Sidebars pushed to extremities */}
-          <div className="relative w-full">
-
-            {/* Left Sidebar - Sponsors - Positioned at far left extremity */}
-            <div className="hidden 2xl:block absolute left-6 top-0 w-[220px]">
-              <Sidebar servers={mockServers} />
+        <main className="flex-1 flex flex-col">
+          {/* Hero Section - Background removed to let site background show */}
+          <section className="relative w-full py-10 mb-6">
+            <div className="absolute inset-0 bg-white/40 backdrop-blur-[1px]" />
+            <div className="relative z-10 w-full max-w-[1800px] mx-auto px-6">
+              <HeroBanner />
             </div>
+          </section>
 
-            {/* Center - Server List - Aligned with Hero (70%) */}
-            <section className="w-[95%] md:w-[70%] mx-auto">
+          <div className="w-full px-6 pb-6">
+            {/* Search Filters - Full Width & Centered Content */}
+            <section className="mb-6 w-full flex justify-center">
               <div className="w-full">
-                <ServerTable
-                  servers={filteredServers}
-                  userHypes={userHypes}
-                  serverHypeCounts={serverHypeCounts}
-                  isAuthenticated={isAuthenticated}
-                  userHypeCounts={userHypeCounts}
-                />
+                <SearchFilters filters={filters} onFilterChange={setFilters} />
               </div>
             </section>
 
-            {/* Right Sidebar - Ads - Positioned at far right extremity */}
-            <div className="hidden 2xl:block absolute right-6 top-0 w-[240px]">
-              <AdBanner />
-            </div>
+            {/* Main Content Area with Sidebars pushed to extremities */}
+            <div className="relative w-full">
 
+              {/* Left Sidebar - Sponsors - Positioned at far left extremity */}
+              <div className="hidden 2xl:block absolute left-6 top-0 w-[220px]">
+                <Sidebar servers={mockServers} />
+              </div>
+
+              {/* Center - Server List - Aligned with Hero (70%) */}
+              <section className="w-[95%] md:w-[70%] mx-auto">
+                <div className="w-full">
+                  <ServerTable
+                    servers={filteredServers}
+                    userHypes={userHypes}
+                    serverHypeCounts={serverHypeCounts}
+                    isAuthenticated={isAuthenticated}
+                    userHypeCounts={userHypeCounts}
+                  />
+                </div>
+              </section>
+
+              {/* Right Sidebar - Ads - Positioned at far right extremity */}
+              <div className="hidden 2xl:block absolute right-6 top-0 w-[240px]">
+                <AdBanner />
+              </div>
+
+            </div>
           </div>
-        </div>
-      </main>
+        </main>
+      </div>
 
       <Footer />
     </div>
