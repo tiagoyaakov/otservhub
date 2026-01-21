@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, X, User, LogOut, ChevronDown } from "lucide-react";
+import { Menu, X, User, LogOut, LogIn, ChevronDown } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { signOut } from "@/lib/auth/actions";
@@ -24,110 +24,119 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-[#0f0a1e] border-b border-purple-900/30">
-      <div className="container mx-auto px-4">
+      <div className="w-full px-6">
         <div className="flex h-16 items-center justify-between">
-          <div className="flex items-center gap-8">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-purple-700 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">O</span>
+          {/* Left: Branding (Logo + Name + Tagline) */}
+          <div className="flex items-center gap-4 z-20 relative">
+            <Link href="/" className="flex items-center gap-3 group">
+              <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-700 rounded-lg flex items-center justify-center shadow-lg shadow-purple-900/20 group-hover:scale-105 transition-transform">
+                <span className="text-white font-bold text-lg">O</span>
               </div>
-              <span className="text-white font-bold text-xl">OtservHub</span>
+              <div className="flex flex-col">
+                <span className="text-white font-bold text-xl leading-none tracking-tight">OtservHub</span>
+                <span className="text-xs text-gray-400 font-medium tracking-wide">A plataforma nº 1 em listagem de OtServers em Pré-Lançamento.</span>
+              </div>
             </Link>
-            
-            <nav className="hidden md:flex items-center gap-6">
-              <Link href="/" className="text-gray-300 hover:text-white transition-colors text-sm">
-                Início
-              </Link>
-              <Link href="/servidores" className="text-gray-300 hover:text-white transition-colors text-sm">
-                Servidores
-              </Link>
-              <Link href="/sobre" className="text-gray-300 hover:text-white transition-colors text-sm">
-                Sobre
-              </Link>
-            </nav>
           </div>
 
-          <div className="hidden md:flex items-center gap-3">
-            {isLoading ? (
-              <div className="w-8 h-8 animate-pulse bg-gray-700 rounded-full" />
-            ) : isAuthenticated && user ? (
-              <div className="relative" ref={userMenuRef}>
-                <button
-                  onClick={() => setUserMenuOpen(!userMenuOpen)}
-                  className="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-white/10 transition-colors"
-                >
-                  {user.user_metadata?.avatar_url ? (
-                    <img
-                      src={user.user_metadata.avatar_url}
-                      alt="Avatar"
-                      className="w-8 h-8 rounded-full"
-                    />
-                  ) : (
-                    <div className="w-8 h-8 rounded-full bg-purple-600 flex items-center justify-center">
-                      <User size={16} className="text-white" />
+          {/* Center: Navigation - Absolutely Centered */}
+          <nav className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center gap-8">
+            <Link href="/" className="text-gray-300 hover:text-white transition-colors text-sm font-medium hover:bg-white/5 px-3 py-1.5 rounded-lg">
+              Início
+            </Link>
+            <Link href="/servidores" className="text-gray-300 hover:text-white transition-colors text-sm font-medium hover:bg-white/5 px-3 py-1.5 rounded-lg">
+              Servidores
+            </Link>
+            <Link href="/sobre" className="text-gray-300 hover:text-white transition-colors text-sm font-medium hover:bg-white/5 px-3 py-1.5 rounded-lg">
+              Sobre
+            </Link>
+          </nav>
+
+          {/* Right: Auth & Actions */}
+          <div className="flex items-center gap-3 z-20 relative">
+            <div className="hidden md:flex items-center gap-3">
+              {isLoading ? (
+                <div className="w-8 h-8 animate-pulse bg-gray-700 rounded-full" />
+              ) : isAuthenticated && user ? (
+                <div className="relative" ref={userMenuRef}>
+                  <button
+                    onClick={() => setUserMenuOpen(!userMenuOpen)}
+                    className="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-white/10 transition-colors"
+                  >
+                    {user.user_metadata?.avatar_url ? (
+                      <img
+                        src={user.user_metadata.avatar_url}
+                        alt="Avatar"
+                        className="w-8 h-8 rounded-full ring-2 ring-purple-500/50"
+                      />
+                    ) : (
+                      <div className="w-8 h-8 rounded-full bg-purple-600 flex items-center justify-center ring-2 ring-purple-500/50">
+                        <User size={16} className="text-white" />
+                      </div>
+                    )}
+                    <span className="text-white text-sm max-w-[100px] truncate font-medium">
+                      {user.user_metadata?.full_name?.split(" ")[0] || "Usuário"}
+                    </span>
+                    <ChevronDown size={16} className="text-gray-400" />
+                  </button>
+
+                  {userMenuOpen && (
+                    <div className="absolute right-0 mt-2 w-48 bg-[#1a1d24] rounded-lg shadow-xl border border-white/10 py-1 z-50">
+                      <Link
+                        href="/perfil"
+                        className="flex items-center gap-2 px-4 py-2 text-sm text-gray-300 hover:bg-white/5 hover:text-white transition-colors"
+                        onClick={() => setUserMenuOpen(false)}
+                      >
+                        <User size={16} />
+                        Meu Perfil
+                      </Link>
+                      <Link
+                        href="/cadastrar-servidor"
+                        className="flex items-center gap-2 px-4 py-2 text-sm text-gray-300 hover:bg-white/5 hover:text-white transition-colors"
+                        onClick={() => setUserMenuOpen(false)}
+                      >
+                        <span className="w-4 h-4 flex items-center justify-center text-xs font-bold">+</span>
+                        Cadastrar Servidor
+                      </Link>
+                      <hr className="my-1 border-white/10" />
+                      <form action={signOut}>
+                        <button
+                          type="submit"
+                          className="flex items-center gap-2 px-4 py-2 text-sm text-red-400 hover:bg-red-500/10 hover:text-red-300 w-full text-left transition-colors"
+                        >
+                          <LogOut size={16} />
+                          Sair
+                        </button>
+                      </form>
                     </div>
                   )}
-                  <span className="text-white text-sm max-w-[100px] truncate">
-                    {user.user_metadata?.full_name?.split(" ")[0] || "Usuário"}
-                  </span>
-                  <ChevronDown size={16} className="text-gray-400" />
-                </button>
+                </div>
+              ) : (
+                <>
+                  <Link
+                    href="/entrar"
+                    className="flex items-center gap-2 px-5 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all font-medium"
+                  >
+                    <LogIn size={16} />
+                    Entrar
+                  </Link>
+                  <Link
+                    href="/cadastrar-servidor"
+                    className="px-5 py-2 text-sm text-white bg-purple-600 hover:bg-purple-700 rounded-lg transition-all font-bold shadow-lg shadow-purple-900/20"
+                  >
+                    Cadastrar Servidor
+                  </Link>
+                </>
+              )}
+            </div>
 
-                {userMenuOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-100 py-1 z-50">
-                    <Link
-                      href="/perfil"
-                      className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
-                      onClick={() => setUserMenuOpen(false)}
-                    >
-                      <User size={16} />
-                      Meu Perfil
-                    </Link>
-                    <Link
-                      href="/cadastrar-servidor"
-                      className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
-                      onClick={() => setUserMenuOpen(false)}
-                    >
-                      <span className="w-4 h-4 flex items-center justify-center text-xs">+</span>
-                      Cadastrar Servidor
-                    </Link>
-                    <hr className="my-1 border-gray-100" />
-                    <form action={signOut}>
-                      <button
-                        type="submit"
-                        className="flex items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50 w-full text-left"
-                      >
-                        <LogOut size={16} />
-                        Sair
-                      </button>
-                    </form>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <>
-                <Link 
-                  href="/entrar"
-                  className="px-4 py-2 text-sm text-gray-300 hover:text-white border border-gray-600 rounded-lg transition-colors"
-                >
-                  Entrar
-                </Link>
-                <Link 
-                  href="/cadastrar-servidor"
-                  className="px-4 py-2 text-sm text-white bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors font-medium"
-                >
-                  Cadastrar Servidor
-                </Link>
-              </>
-            )}
+            <button
+              className="md:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
           </div>
-
-          <button
-            className="md:hidden text-white"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
         </div>
 
         {mobileMenuOpen && (
@@ -145,7 +154,7 @@ export function Header() {
               <div className="flex flex-col gap-2 pt-4 border-t border-purple-900/30">
                 {isAuthenticated && user ? (
                   <>
-                    <Link 
+                    <Link
                       href="/perfil"
                       className="flex items-center gap-2 px-4 py-2 text-sm text-white"
                     >
@@ -172,13 +181,13 @@ export function Header() {
                   </>
                 ) : (
                   <>
-                    <Link 
+                    <Link
                       href="/entrar"
                       className="px-4 py-2 text-sm text-gray-300 hover:text-white border border-gray-600 rounded-lg transition-colors text-center"
                     >
                       Entrar
                     </Link>
-                    <Link 
+                    <Link
                       href="/cadastrar-servidor"
                       className="px-4 py-2 text-sm text-white bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors font-medium text-center"
                     >

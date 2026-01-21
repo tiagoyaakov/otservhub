@@ -62,36 +62,44 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-[#f8f9fb]">
       <Header />
-      
+
       <main className="flex-1">
         <div className="w-full px-4 py-6">
           <section className="mb-6">
             <HeroBanner />
           </section>
 
-          <section className="mb-6">
+          <section className="mb-6 w-[95%] md:w-[70%] mx-auto">
             <SearchFilters filters={filters} onFilterChange={setFilters} />
           </section>
 
-          <section className="flex gap-3">
-            <div className="w-[180px] flex-shrink-0 hidden lg:block">
+          {/* Main Content Area with Sidebars pushed to extremities */}
+          <div className="relative w-full">
+
+            {/* Left Sidebar - Sponsors - Positioned at far left extremity */}
+            <div className="hidden 2xl:block absolute left-6 top-0 w-[220px]">
               <Sidebar servers={mockServers} />
             </div>
-            
-            <div className="flex-1 min-w-0">
-              <ServerTable 
-                servers={filteredServers}
-                userHypes={userHypes}
-                serverHypeCounts={serverHypeCounts}
-                isAuthenticated={isAuthenticated}
-                userHypeCounts={userHypeCounts}
-              />
-            </div>
-            
-            <div className="w-[160px] flex-shrink-0 hidden xl:block">
+
+            {/* Center - Server List - Aligned with Hero (70%) */}
+            <section className="w-[95%] md:w-[70%] mx-auto">
+              <div className="w-full">
+                <ServerTable
+                  servers={filteredServers}
+                  userHypes={userHypes}
+                  serverHypeCounts={serverHypeCounts}
+                  isAuthenticated={isAuthenticated}
+                  userHypeCounts={userHypeCounts}
+                />
+              </div>
+            </section>
+
+            {/* Right Sidebar - Ads - Positioned at far right extremity */}
+            <div className="hidden 2xl:block absolute right-6 top-0 w-[240px]">
               <AdBanner />
             </div>
-          </section>
+
+          </div>
         </div>
       </main>
 
