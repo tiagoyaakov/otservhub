@@ -60,7 +60,7 @@ export default function Home() {
   }, [filters]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#f8f9fb]">
+    <div className="min-h-screen flex flex-col bg-slate-50">
       <div className="flex-1 flex flex-col w-full bg-[url('/site-bg-clean.png')] bg-cover bg-fixed bg-center">
         <Header />
 

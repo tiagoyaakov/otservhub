@@ -23,7 +23,7 @@ export function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-[#0f0a1e] border-b border-purple-900/30">
+    <header className="sticky top-0 z-50 w-full bg-[#0f0a1e] border-b border-purple-500/50 shadow-[0_0_15px_rgba(168,85,247,0.3)]">
       <div className="w-full px-6">
         <div className="flex h-16 items-center justify-between">
           {/* Left: Branding (Logo + Name + Tagline) */}

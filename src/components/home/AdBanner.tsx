@@ -8,7 +8,7 @@ export function AdBanner() {
       {/* Slot 1 */}
       <div className="flex flex-col gap-2">
         <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider pl-1">
-          Patrocínio Gold
+          Mais Aguardados
         </h3>
         <div className="bg-gradient-to-b from-gray-100 to-gray-50 rounded-xl border border-gray-200 h-64 w-full flex flex-col items-center justify-center p-3 shadow-sm hover:shadow-md transition-shadow">
           <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-3">
@@ -29,7 +29,7 @@ export function AdBanner() {
       {/* Slot 2 */}
       <div className="flex flex-col gap-2">
         <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider pl-1">
-          Patrocínio Silver
+          Mais Hypados
         </h3>
         <div className="bg-gradient-to-b from-gray-100 to-gray-50 rounded-xl border border-gray-200 h-64 w-full flex flex-col items-center justify-center p-3 shadow-sm hover:shadow-md transition-shadow">
           <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-3">

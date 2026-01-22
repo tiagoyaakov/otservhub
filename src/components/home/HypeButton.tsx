@@ -13,42 +13,42 @@ interface HypeButtonProps {
   userHypeCounts: Record<HypeType, number>;
 }
 
-const HYPE_CONFIG: Record<HypeType, { 
-  icon: typeof Flame; 
-  label: string; 
+const HYPE_CONFIG: Record<HypeType, {
+  icon: typeof Flame;
+  label: string;
   activeColor: string;
   hoverColor: string;
   limit: number;
 }> = {
-  GOING: { 
-    icon: Flame, 
-    label: "GOING", 
+  GOING: {
+    icon: Flame,
+    label: "VOU JOGAR!",
     activeColor: "bg-green-500 text-white border-green-500",
     hoverColor: "hover:border-green-400 hover:text-green-500",
     limit: 3
   },
-  WAITING: { 
-    icon: Clock, 
-    label: "WAITING", 
+  WAITING: {
+    icon: Clock,
+    label: "ESPERANDO O LANÇAMENTO",
     activeColor: "bg-yellow-500 text-white border-yellow-500",
     hoverColor: "hover:border-yellow-400 hover:text-yellow-500",
     limit: 5
   },
-  MAYBE: { 
-    icon: HelpCircle, 
-    label: "MAYBE", 
+  MAYBE: {
+    icon: HelpCircle,
+    label: "EM DÚVIDA",
     activeColor: "bg-gray-500 text-white border-gray-500",
     hoverColor: "hover:border-gray-400 hover:text-gray-500",
     limit: Infinity
   },
 };
 
-export function HypeButton({ 
-  serverId, 
-  userHype, 
-  counts, 
+export function HypeButton({
+  serverId,
+  userHype,
+  counts,
   isAuthenticated,
-  userHypeCounts 
+  userHypeCounts
 }: HypeButtonProps) {
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string | null>(null);
@@ -129,8 +129,8 @@ export function HypeButton({
               disabled={isPending}
               className={`
                 flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md border transition-all
-                ${isActive 
-                  ? config.activeColor 
+                ${isActive
+                  ? config.activeColor
                   : `border-gray-200 text-gray-500 ${config.hoverColor}`
                 }
                 ${isPending ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}
