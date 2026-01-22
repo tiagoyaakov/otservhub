@@ -27,11 +27,13 @@ export function Header() {
       <div className="w-full px-6">
         <div className="flex h-16 items-center justify-between">
           {/* Left: Branding (Logo + Name + Tagline) */}
-          <div className="flex items-center gap-4 z-20 relative">
+          <div className="flex-1 flex items-center justify-start gap-4 z-20">
             <Link href="/" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-700 rounded-lg flex items-center justify-center shadow-lg shadow-purple-900/20 group-hover:scale-105 transition-transform">
-                <span className="text-white font-bold text-lg">O</span>
-              </div>
+              <img
+                src="/logo.png"
+                alt="OtservHub Logo"
+                className="w-14 h-14 rounded-full object-cover shadow-lg shadow-purple-900/20 group-hover:scale-105 transition-transform"
+              />
               <div className="flex flex-col">
                 <span className="text-white font-bold text-xl leading-none tracking-tight">OtservHub</span>
                 <span className="text-xs text-gray-400 font-medium tracking-wide">A plataforma nº 1 em listagem de OtServers em Pré-Lançamento.</span>
@@ -39,8 +41,8 @@ export function Header() {
             </Link>
           </div>
 
-          {/* Center: Navigation - Absolutely Centered */}
-          <nav className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center gap-8">
+          {/* Center: Navigation - Flex Centered */}
+          <nav className="flex-1 hidden lg:flex items-center justify-center gap-8">
             <Link href="/" className="text-gray-300 hover:text-white transition-colors text-sm font-medium hover:bg-white/5 px-3 py-1.5 rounded-lg">
               Início
             </Link>
@@ -53,7 +55,7 @@ export function Header() {
           </nav>
 
           {/* Right: Auth & Actions */}
-          <div className="flex items-center gap-3 z-20 relative">
+          <div className="flex-1 flex items-center justify-end gap-3 z-20">
             <div className="hidden md:flex items-center gap-3">
               {isLoading ? (
                 <div className="w-8 h-8 animate-pulse bg-gray-700 rounded-full" />
@@ -131,7 +133,7 @@ export function Header() {
             </div>
 
             <button
-              className="md:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors"
+              className="lg:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -140,7 +142,7 @@ export function Header() {
         </div>
 
         {mobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-purple-900/30">
+          <div className="lg:hidden py-4 border-t border-purple-900/30">
             <nav className="flex flex-col gap-4">
               <Link href="/" className="text-gray-300 hover:text-white transition-colors">
                 Início

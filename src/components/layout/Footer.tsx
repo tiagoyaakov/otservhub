@@ -7,9 +7,11 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <Link href="/" className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-purple-700 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">O</span>
-              </div>
+              <img
+                src="/logo.png"
+                alt="OtservHub Logo"
+                className="w-12 h-12 rounded-full object-cover"
+              />
               <span className="text-white font-bold text-xl">OtservHub</span>
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed">

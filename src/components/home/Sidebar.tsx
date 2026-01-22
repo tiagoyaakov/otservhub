@@ -98,7 +98,7 @@ export function Sidebar({ servers }: SidebarProps) {
             </div>
 
             {/* Carousel Card */}
-            <div className="relative w-full h-[140px] rounded-lg overflow-hidden bg-[#0f1922] shadow-lg border border-white/5 transition-transform hover:-translate-y-1 duration-300 group-hover/card:shadow-purple-500/10">
+            <div className="relative w-full h-36 rounded-lg overflow-hidden bg-[#0f1922] shadow-lg border border-white/5 transition-transform hover:-translate-y-1 duration-300 group-hover/card:shadow-purple-500/10">
 
               {/* Background with Gradient (Simulating Image) */}
               <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-purple-900/20 to-black p-3 flex flex-col justify-end">

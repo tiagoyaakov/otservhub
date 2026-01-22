@@ -170,6 +170,8 @@ function ServerRow({ server, userHype, hypeCounts, isAuthenticated, userHypeCoun
   );
 }
 
+import { ServerCard } from "./ServerCard";
+
 interface ServerTableProps {
   servers: Server[];
   userHypes: Record<string, HypeType>;
@@ -234,7 +236,8 @@ export function ServerTable({ servers, userHypes, serverHypeCounts, isAuthentica
         </div>
       </div>
 
-      <div className="overflow-x-auto">
+      {/* Desktop View: Table */}
+      <div className="hidden md:block overflow-x-auto">
         <table className="w-full">
           <thead>
             <tr className="bg-gray-50 border-b border-gray-100">
@@ -280,6 +283,20 @@ export function ServerTable({ servers, userHypes, serverHypeCounts, isAuthentica
             ))}
           </tbody>
         </table>
+      </div>
+
+      {/* Mobile View: Cards */}
+      <div className="block md:hidden p-4 bg-gray-50/30">
+        {paginatedServers.map((server) => (
+          <ServerCard
+            key={server.id}
+            server={server}
+            userHype={userHypes[server.id] || null}
+            hypeCounts={serverHypeCounts[server.id] || { going: 0, waiting: 0, maybe: 0, total: 0 }}
+            isAuthenticated={isAuthenticated}
+            userHypeCounts={userHypeCounts}
+          />
+        ))}
       </div>
 
       {displayServers.length === 0 && (

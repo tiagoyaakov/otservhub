@@ -28,13 +28,15 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen flex flex-col bg-[#f8f9fb]">
       <Header />
-      
+
       <main className="flex-1 flex items-center justify-center py-12">
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 max-w-md w-full mx-4">
           <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-700 rounded-xl flex items-center justify-center mx-auto mb-4">
-              <span className="text-white font-bold text-2xl">O</span>
-            </div>
+            <img
+              src="/logo.png"
+              alt="OtservHub Logo"
+              className="w-20 h-20 rounded-full object-cover mx-auto mb-4 shadow-xl shadow-purple-900/10"
+            />
             <h1 className="text-2xl font-bold text-gray-900 mb-2">Entrar no OtservHub</h1>
             <p className="text-gray-600">
               Faça login para acompanhar servidores, dar Hype e cadastrar seu servidor.

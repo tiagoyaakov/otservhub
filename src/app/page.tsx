@@ -68,12 +68,12 @@ export default function Home() {
           {/* Hero Section - Background removed to let site background show */}
           <section className="relative w-full py-10 mb-6">
             <div className="absolute inset-0 bg-white/40 backdrop-blur-[1px]" />
-            <div className="relative z-10 w-full max-w-[1800px] mx-auto px-6">
+            <div className="relative z-10 w-full px-4 md:px-6">
               <HeroBanner />
             </div>
           </section>
 
-          <div className="w-full px-6 pb-6">
+          <div className="w-full px-4 md:px-6 pb-6">
             {/* Search Filters - Full Width & Centered Content */}
             <section className="mb-6 w-full flex justify-center">
               <div className="w-full">
@@ -81,16 +81,16 @@ export default function Home() {
               </div>
             </section>
 
-            {/* Main Content Area with Sidebars pushed to extremities */}
-            <div className="relative w-full">
+            {/* Main Content Area - Grid Layout - Full Fluid */}
+            <div className="w-full grid grid-cols-1 xl:grid-cols-[280px_1fr_280px] gap-6 items-start px-4 md:px-6">
 
-              {/* Left Sidebar - Sponsors - Positioned at far left extremity */}
-              <div className="hidden 2xl:block absolute left-6 top-0 w-[220px]">
+              {/* Left Sidebar - Sponsors */}
+              <aside className="hidden xl:block">
                 <Sidebar servers={mockServers} />
-              </div>
+              </aside>
 
-              {/* Center - Server List - Aligned with Hero (70%) */}
-              <section className="w-[95%] md:w-[70%] mx-auto">
+              {/* Center - Server List */}
+              <section className="w-full min-w-0">
                 <div className="w-full">
                   <ServerTable
                     servers={filteredServers}
@@ -102,10 +102,10 @@ export default function Home() {
                 </div>
               </section>
 
-              {/* Right Sidebar - Ads - Positioned at far right extremity */}
-              <div className="hidden 2xl:block absolute right-6 top-0 w-[240px]">
+              {/* Right Sidebar - Ads */}
+              <aside className="hidden xl:block">
                 <AdBanner />
-              </div>
+              </aside>
 
             </div>
           </div>
