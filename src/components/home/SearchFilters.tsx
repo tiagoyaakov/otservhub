@@ -7,6 +7,7 @@ export interface FilterState {
   version: string;
   type: string;
   map: string;
+  theme: string;
 }
 
 interface FilterOption {
@@ -16,6 +17,11 @@ interface FilterOption {
 }
 
 const filterGroups: FilterOption[] = [
+  {
+    id: "theme",
+    label: "TEMA:",
+    options: ["Todos", "Tibia", "Pokemon", "Naruto", "Dragonball", "Outros"],
+  },
   {
     id: "version",
     label: "VERSÃO:",
@@ -71,8 +77,8 @@ export function SearchFilters({ filters, onFilterChange }: SearchFiltersProps) {
                     key={option}
                     onClick={() => handleFilterChange(group.id, option)}
                     className={`px-3 py-1.5 text-xs rounded-md transition-colors ${filters[group.id] === option
-                        ? "bg-purple-600 text-white"
-                        : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                      ? "bg-purple-600 text-white"
+                      : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                       }`}
                   >
                     {option}

@@ -6,6 +6,8 @@ export interface ServerSystem {
 export interface Server {
   id: string;
   name: string;
+  ip?: string; // Added for real server data
+  port?: number; // Added for real server data
   logo: string;
   country: "BR" | "US" | "EU";
   playersOnline: number;
@@ -18,9 +20,15 @@ export interface Server {
   hasMobile: boolean;
   isVerified: boolean;
   hypeScore: number;
+  website?: string; // Added for real server data
+  expRate?: string; // Added for real server data
+  tags?: string[]; // Added for real server data
+  isPremium?: boolean; // Added for real server data
+  bannerUrl?: string; // Added for real server data
   category: "oldschool" | "baiak" | "war";
   systems: ServerSystem[];
   description: string;
+  theme: string; // "Tibia", "Pokemon", "Naruto", "Dragonball", "Outros"
 }
 
 export function parseServerDate(dateString: string): Date {
@@ -50,6 +58,7 @@ export const mockServers: Server[] = [
       { name: "Cast System", enabled: true },
     ],
     description: "O mais completo 7.72 do Brasil. Jogue agora!",
+    theme: "Tibia",
   },
   {
     id: "2",
@@ -73,6 +82,7 @@ export const mockServers: Server[] = [
       { name: "Cast System", enabled: true },
     ],
     description: "Servidor Global High Rate com sistemas exclusivos.",
+    theme: "Tibia",
   },
   {
     id: "3",
@@ -95,6 +105,7 @@ export const mockServers: Server[] = [
       { name: "VIP System", enabled: true },
     ],
     description: "O rei do PvP está de volta. Venha dominar!",
+    theme: "Tibia",
   },
   {
     id: "4",
@@ -117,6 +128,7 @@ export const mockServers: Server[] = [
       { name: "Cast System", enabled: true },
     ],
     description: "Baiak 24h sem lag. Dedicado BR.",
+    theme: "Pokemon",
   },
   {
     id: "5",
@@ -139,6 +151,7 @@ export const mockServers: Server[] = [
       { name: "Events", enabled: true },
     ],
     description: "Mapa próprio, quests inéditas e RPG imersivo.",
+    theme: "Naruto",
   },
   {
     id: "6",
@@ -162,6 +175,7 @@ export const mockServers: Server[] = [
       { name: "Task System", enabled: true },
     ],
     description: "Aventure-se em terras desconhecidas. Sem PK.",
+    theme: "Dragonball",
   },
   {
     id: "7",
@@ -185,6 +199,7 @@ export const mockServers: Server[] = [
       { name: "Events", enabled: true },
     ],
     description: "High XP, reset system e sets editados.",
+    theme: "Tibia",
   },
   {
     id: "8",
@@ -207,6 +222,7 @@ export const mockServers: Server[] = [
       { name: "Cast System", enabled: true },
     ],
     description: "Oldschool de verdade. Sem hotkeys.",
+    theme: "Tibia",
   },
   {
     id: "9",
@@ -229,6 +245,7 @@ export const mockServers: Server[] = [
       { name: "Guild System", enabled: true },
     ],
     description: "Focado em War. Crie seu time e lute.",
+    theme: "Tibia",
   },
   {
     id: "10",
@@ -251,6 +268,7 @@ export const mockServers: Server[] = [
       { name: "Prey System", enabled: true },
     ],
     description: "Low rate, RPG sério e comunidade ativa.",
+    theme: "Tibia",
   },
   {
     id: "11",
@@ -274,6 +292,7 @@ export const mockServers: Server[] = [
       { name: "Events", enabled: true },
     ],
     description: "O melhor servidor de War do momento.",
+    theme: "Tibia",
   },
 ];
 

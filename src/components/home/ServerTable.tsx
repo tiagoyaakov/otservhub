@@ -87,6 +87,17 @@ function ServerRow({ server, userHype, hypeCounts, isAuthenticated, userHypeCoun
       </td>
 
       <td className="py-2.5 px-2 text-center w-[80px]">
+        <span className={`text-xs font-bold px-2 py-1 rounded-full ${server.theme === 'Tibia' ? 'bg-blue-50 text-blue-600' :
+            server.theme === 'Pokemon' ? 'bg-yellow-50 text-yellow-600' :
+              server.theme === 'Naruto' ? 'bg-orange-50 text-orange-600' :
+                server.theme === 'Dragonball' ? 'bg-red-50 text-red-600' :
+                  'bg-gray-50 text-gray-600'
+          }`}>
+          {server.theme}
+        </span>
+      </td>
+
+      <td className="py-2.5 px-2 text-center w-[80px]">
         <span className="text-xs text-gray-700">v{server.version}</span>
       </td>
 
@@ -248,6 +259,9 @@ export function ServerTable({ servers, userHypes, serverHypeCounts, isAuthentica
               </th>
               <th className="text-center py-2.5 px-2 text-xs font-semibold text-gray-500 uppercase tracking-wider whitespace-nowrap w-[100px]">
                 {activeTab === "upcoming" ? "Lança Em" : "Status"}
+              </th>
+              <th className="text-center py-2.5 px-2 text-xs font-semibold text-gray-500 uppercase tracking-wider w-[80px]">
+                Tema
               </th>
               <th className="text-center py-2.5 px-2 text-xs font-semibold text-gray-500 uppercase tracking-wider w-[80px]">
                 Versão
